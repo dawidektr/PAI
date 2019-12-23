@@ -4,7 +4,6 @@
          <meta charset="UTF-8">
         <meta name="description" content="Sprzedaż samochodów klasycznych">
         <meta name="keywords" content="Classic, Car, Classic Car,Klasyk, Klasyki, Samochody, Samochody klasyczne">
-        <meta name="author" content="Mateusz Gryboś">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Classic4you</title>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
