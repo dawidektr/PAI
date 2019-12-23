@@ -1,0 +1,51 @@
+/* galeria */
+
+.btn:focus,
+.btn:active,
+button:focus,
+button:active {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+#image-gallery .modal-footer {
+    display: block;
+}
+
+.thumb {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.fotka {
+    transition-duration: 3s;
+    margin: 0 auto;
+    display: block;
+
+}
+
+.fotka:hover {
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    z-index: 0;
+}
+
+body {
+    background-color: rgb(90, 90, 90);
+    color: white;
+}
+
+#map {
+    height: 35vh;
+    width: 70%;
+    margin: 0 auto 3vh auto;
+}
+
+#footer{
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+}
