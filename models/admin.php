@@ -15,26 +15,72 @@ class admin extends Model{
         $stmt->execute();
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-
-
         if ($stmt->rowCount() > 0){
-        	if($password == $result['password']){
+        	// if($password == $result['password']){
+				if (password_verify($password, $result['password'])) {
         		$_SESSION['email'] = $result['email'];
-        		$_SESSION['first_name'] = $result['first_name'];
-        		$_SESSION['last_name'] = $result['last_name'];
-
         		return true;
         	}else{
         		unset($_SESSION['email']);
-        		unset($_SESSION['first_name']);
-        		unset($_SESSION['last_name']);
-
-        		return false;
+        			return false;
         	}
         }else{
         	return false;
         }
+	}
+	
+	public function find_by_email($email){
+        $query = "SELECT * FROM `users` WHERE email = :email";
+        $stmt = $this->db->prepare($query);
+        $stmt->bindParam(':email', $email);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result;
     }
+
+
+	
+	
+	
+	public function register($data){
+		
+     $email = trim($data['email']);
+
+
+        if($this->find_by_email($email)){
+            return false;
+        }else {
+            $id_role = 2;
+			$password = trim($data['password']);
+			
+			
+            $password= password_hash($password,PASSWORD_DEFAULT);
+			 
+
+            $query = "INSERT INTO users (`id_user`,`id_user_details`, `id_role`, `email`, `password`,`created_at`) 
+            VALUES (null,null, :id_role, :email, :password,CURRENT_DATE())";
+
+            
+            $stmt = $this->db->prepare($query);
+            $stmt->bindParam(":id_role", $id_role);
+            $stmt->bindParam(":email", $email);
+            $stmt->bindParam(":password", $password);
+            
+			// print_r($stmt);
+			// die();
+         $stmt->execute();
+            return true;
+        }
+
+
+    }
+
+
+
+
+
+
+
 	
 	public function addMainPhoto(){
 		
@@ -161,7 +207,7 @@ class admin extends Model{
 
 		$text .= "<div class='container'>";
 		$text .= "<div class='row'>";
-		$text .= "<div class='col-lg-9'>";
+		$text .= "<div class='col-lg-12'>";
 
     	$text .= "<table class='table table-sm'>";
 		$text .= "<thead>";

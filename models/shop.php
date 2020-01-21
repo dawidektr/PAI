@@ -101,7 +101,7 @@ class shop extends Model{
     
     public function genHTML($array){
         $text = '';
-        $text .= "<div class='col-lg-9 '>";
+        $text .= "<div class='container col-lg-9'>";
         $text .= "<div class='row'>";
         
         for($i=0; $i<count($array); $i++){

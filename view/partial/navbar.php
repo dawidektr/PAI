@@ -19,7 +19,7 @@
             <a class="nav-link" href="#">Services</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/admin/showRegisterPanel">Contact</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.facebook.com/classsic4you/"><i class="fab fa-facebook-square"></i></a>
@@ -28,3 +28,4 @@
       </div>
     </div>
   </nav>
+

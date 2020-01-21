@@ -18,16 +18,16 @@ button:active {
 }
 
 .fotka {
-    transition-duration: 3s;
+    transition-duration: 2s;
     margin: 0 auto;
     display: block;
 
 }
 
 .fotka:hover {
-    transform: scale(1.2);
-    -webkit-transform: scale(1.2);
-    -moz-transform: scale(1.2);
+    transform: scale(1.05);
+    -webkit-transform: scale(1.05);
+    -moz-transform: scale(1.05);
     z-index: 0;
 }
 
@@ -42,7 +42,7 @@ body {
     margin: 0 auto 3vh auto;
 }
 
-#footer{
+#footer {
     position: absolute;
     bottom: 0;
     height: 50px;

@@ -2,12 +2,26 @@
 
 class Model
 {
+    // private $host = 'localhost';
+    // private $db_name = 'pai';
+    // private $username = 'root';
+    // private $password = '';
+    // protected $db;
+    
     private $host = 'localhost';
-    private $db_name = 'pai';
+    private $db_name = 'projekt_pai';
     private $username = 'root';
     private $password = '';
     protected $db;
-    
+
+
+
+
+
+
+
+
+
     public function __construct()
     {
         try{
