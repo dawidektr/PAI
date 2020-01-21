@@ -7,7 +7,7 @@ class offer extends Model{
     public function getPhotos(){
         $oferta=$_GET['oferta'];
         
-        $query="SELECT name from photos where car_id = $oferta";
+        $query="SELECT name from photos where id_car = $oferta";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         
@@ -100,7 +100,7 @@ class offer extends Model{
     public function carINFO(){
         $oferta=$_GET['oferta'];
         
-        $query = "SELECT * FROM cars where id = $oferta";
+        $query = "SELECT * FROM cars where id_car = $oferta";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         
@@ -110,7 +110,7 @@ class offer extends Model{
 		
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			//do zmiany przy wrzucaniu na serwer
-			$query = "SELECT name FROM photos WHERE car_id = $oferta";
+			$query = "SELECT name FROM photos WHERE id_car = $oferta";
 			$stmtPHOTO = $this->db->prepare($query);
 			$stmtPHOTO->execute();
 			

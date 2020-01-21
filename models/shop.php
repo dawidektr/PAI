@@ -15,7 +15,7 @@ class shop extends Model{
 		
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
 			//do zmiany przy wrzucaniu na serwer
-			$query = "SELECT name FROM photos WHERE car_id = '".$row['id']."'";
+			$query = "SELECT name FROM photos WHERE id_car = '".$row['id_car']."'";
 			$stmtPHOTO = $this->db->prepare($query);
 			$stmtPHOTO->execute();
 			
@@ -41,7 +41,7 @@ class shop extends Model{
         
         $result = array();
         while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
-			$query = "SELECT name FROM photos WHERE car_id = '".$row['id']."'";
+			$query = "SELECT name FROM photos WHERE id_car = '".$row['id_car']."'";
 			$stmtPHOTO = $this->db->prepare($query);
 			$stmtPHOTO->execute();
 			
@@ -86,7 +86,7 @@ class shop extends Model{
 					}
 				}
 				
-				$query = "UPDATE photos SET name = '".$_FILES['main_photo']['name']."' WHERE car_id = $id";
+				$query = "UPDATE photos SET name = '".$_FILES['main_photo']['name']."' WHERE id_car = $id_car";
 				$stmt = $this->db->prepare($query);
 				$stmt->execute();
 			}
@@ -106,7 +106,7 @@ class shop extends Model{
         
         for($i=0; $i<count($array); $i++){
             
-            $id=$array[$i]['id'];
+            $id_car=$array[$i]['id_car'];
             $name = $array[$i]['name'];
             $prize = $array[$i]['prize'];
             $shortDescript = $array[$i]['shortDescript'];
@@ -114,10 +114,10 @@ class shop extends Model{
 
             $text .= "<div class='col-lg-4 col-md-6 mb-4'>";
             $text .= "<div class='card h-100 bg-dark'>";
-            $text .= "<a href='/offer?oferta=$id'><img class='card-img-top fotka' src='".$mainPhoto."' alt='' </a>";
+            $text .= "<a href='/offer?oferta=$id_car'><img class='card-img-top fotka' src='".$mainPhoto."' alt='' </a>";
             $text .= "<div class='card-body'>";
             $text .= "<h4 class='card-title'>";
-            $text .= "<a href='/offer?oferta=$id'>$name</a>";
+            $text .= "<a href='/offer?oferta=$id_car'>$name</a>";
             $text .= "</h4>";
             $text .= "<h5>$prize</h5>";
             $text .= "<p class='card-text'>$shortDescript</p>";

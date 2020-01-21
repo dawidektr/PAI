@@ -42,23 +42,6 @@ class AdminController extends Controller{
     }
 
 
-// public function register(){
-        
-//         if(!isset($_POST) || empty($_POST)){
-//             $_SESSION['logged'] = false;
-//             $this->redirect("/");
-//             die();
-//         }else{
-//             $model = $this->model('admin');
-//             if($model->login($_POST)){
-//                 $_SESSION['logged'] = true;
-//                 $this->redirect('/admin/ShowRegisterPanel');
-//             }else{
-//                 $_SESSION['logged'] = false;
-//                 $this->redirect('/admin');
-//             }
-//         }
-//     }
 
     public function register() {
         if (!isset($_POST) || empty($_POST)){
@@ -107,6 +90,7 @@ class AdminController extends Controller{
         $this->partial('footer');
     }
 
+    
     public function addFunction(){
         $model = $this->model('admin');
 		

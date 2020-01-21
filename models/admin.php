@@ -18,7 +18,9 @@ class admin extends Model{
         if ($stmt->rowCount() > 0){
         	// if($password == $result['password']){
 				if (password_verify($password, $result['password'])) {
-        		$_SESSION['email'] = $result['email'];
+				$_SESSION['email'] = $result['email'];
+				$_SESSION['id_role'] = $result['id_role'];
+				
         		return true;
         	}else{
         		unset($_SESSION['email']);
@@ -44,14 +46,17 @@ class admin extends Model{
 	
 	public function register($data){
 		
-     $email = trim($data['email']);
+	 $email = trim($data['email']);
+	 $password = trim($data['password']);
+	$rpassword = trim($data['rpassword']);
 
 
-        if($this->find_by_email($email)){
+        if($this->find_by_email($email) || !($password==$rpassword) ){
             return false;
         }else {
             $id_role = 2;
-			$password = trim($data['password']);
+			
+
 			
 			
             $password= password_hash($password,PASSWORD_DEFAULT);
@@ -142,10 +147,10 @@ class admin extends Model{
 		
 		
 		if($stmt->rowCount() == 1){
-			$car_id = $result['id'];
+			$id_car = $result['id_car'];
 			$name = $_FILES["main_photo"]["name"];
 			
-			$query = "INSERT INTO photos (id, name, car_id) VALUES (NULL, '$name', $car_id)";
+			$query = "INSERT INTO photos (id_photo, name, id_car) VALUES (NULL, '$name', $id_car)";
 			$stmt = $this->db->prepare($query);
 			$stmt->execute();
 		}
@@ -160,12 +165,12 @@ class admin extends Model{
 
 		
 		if($stmt->rowCount() == 1){
-			$car_id = $result['id'];
+			$id_car = $result['id_car'];
 			$threshold=count($_FILES['file']['name']);
 			
 			for($i=0; $i<$threshold; $i++){
 				$name = $_FILES['file']['name'][$i];
-				$query = "INSERT INTO photos (id, name, car_id) VALUES (NULL, '$name', $car_id)";
+				$query = "INSERT INTO photos (id_photo, name, id_car) VALUES (NULL, '$name', $id_car)";
 				$stmt = $this->db->prepare($query);
 				$stmt->execute();
 			}
@@ -179,7 +184,7 @@ class admin extends Model{
     	$year = trim($data['year']);
     	$prize = trim($data['prize']);
 
-    	$query = "INSERT INTO cars (id, name, shortDescript, descript, year, prize) VALUES (NULL, :name, :short_desc, :desc, :year, :prize)";
+    	$query = "INSERT INTO cars (id_car, name, shortDescript, descript, year, prize) VALUES (NULL, :name, :short_desc, :desc, :year, :prize)";
         $stmt = $this->db->prepare($query);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':short_desc', $short_desc);
@@ -221,8 +226,8 @@ class admin extends Model{
 		$text .= "<tbody>";
 		for($i=0; $i<count($data); $i++){
 			$name = $data[$i]['name'];
-			$edit_link = "admin/edit?id=".$data[$i]['id'];
-			$delete_link = "admin/delete?id=".$data[$i]['id'];
+			$edit_link = "admin/edit?id=".$data[$i]['id_car'];
+			$delete_link = "admin/delete?id=".$data[$i]['id_car'];
 
 			$text .= "<tr>";
 			$text .= "<th scope='row'>$i</th>";
