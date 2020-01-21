@@ -16,10 +16,10 @@
             <a class="nav-link" href="/aboutme">About</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Services</a>
+            <a class="nav-link" href="/admin">Login</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Contact</a>
+            <a class="nav-link" href="/admin/showRegisterPanel">Register</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="https://www.facebook.com/classsic4you/"><i class="fab fa-facebook-square"></i></a>
@@ -28,3 +28,4 @@
       </div>
     </div>
   </nav>
+

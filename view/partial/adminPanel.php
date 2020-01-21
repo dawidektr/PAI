@@ -1,9 +1,12 @@
-
+<?php ?>
 
 <div class="container">
     <div class="row">
         <div class="col-lg-9">
-    		<h2>Admin Panel</h2>
+			<br>
+    		<h2><?php echo "Hello ", isset($_SESSION['email']) ? $_SESSION['email'] : "Admin", "!";  ?> </h2>
+
+			
 
     		<div id="addNewElementButton"><a href="admin/add">Add new element</a></div>
     		<div id="logoutButton"><a href="admin/logout">Logout</a></div>

@@ -15,6 +15,54 @@ class AdminController extends Controller{
             $this->showLoginPanel();
         }
     }
+
+
+    private function showLoginPanel(){
+        
+        $this->partial('header');
+        $this->partial('navbar');
+        
+        $this->partial('loginForm');
+       
+
+        
+        $this->partial('footer');
+    }
+
+    public function showRegisterPanel(){
+        
+        $this->partial('header');
+        $this->partial('navbar');
+        
+       
+        $this->partial('registerForm');
+
+        
+        $this->partial('footer');
+    }
+
+
+
+    public function register() {
+        if (!isset($_POST) || empty($_POST)){
+            $this->redirect("/admin/showRegisterPanel");
+            die();
+        }else {
+            $model = $this->model('admin');
+            if ($model->register($_POST)){
+                $this->redirect("/");
+            }else {
+                $this->redirect("/admin/showRegisterPanel");
+            }
+        }
+    }
+
+
+
+
+
+
+
     
     private function showAdminPanel(){
         
@@ -42,6 +90,7 @@ class AdminController extends Controller{
         $this->partial('footer');
     }
 
+    
     public function addFunction(){
         $model = $this->model('admin');
 		
@@ -105,15 +154,7 @@ class AdminController extends Controller{
         exit();
     }
 
-    private function showLoginPanel(){
-        
-        $this->partial('header');
-        $this->partial('navbar');
-        
-        $this->partial('loginForm');
-        
-        $this->partial('footer');
-    }
+    
     
     public function login(){
         

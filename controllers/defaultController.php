@@ -5,17 +5,26 @@ class DefaultController extends Controller{
     public function index(){
         $this->partial('header');
         $this->partial('navbar');
+        
+//        $this->partial('loginForm');
+        
+        
+        
+        
+        
+        
+        
         //$this->partial('slider');
         
        // $this->partial('aboutme');
         
         
-        $model = $this->model('shop');
+         $model = $this->model('shop');
         
-        $resultArray = $model->getAllShopElement();
+         $resultArray = $model->getAllShopElement();
         
-        $html = $model->genHTML($resultArray);
-        echo $html;
+         $html = $model->genHTML($resultArray);
+         echo $html;
         
         
         $this->partial('footer');
