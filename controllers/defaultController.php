@@ -6,6 +6,7 @@ class DefaultController extends Controller{
         $this->partial('header');
         $this->partial('navbar');
         
+        
 //        $this->partial('loginForm');
         
         

@@ -30,15 +30,24 @@ class AdminController extends Controller{
     }
 
     public function showRegisterPanel(){
-        
-        $this->partial('header');
-        $this->partial('navbar');
-        
-       
-        $this->partial('registerForm');
+
+
+        if(isset($_SESSION['logged']) && $_SESSION['logged'] == true){
+            $this->showAdminPanel();
+        }else{
+            $this->partial('header');
+            $this->partial('navbar');
+            
+           
+            $this->partial('registerForm');
+    
+            
+            $this->partial('footer');;
+        }
+
 
         
-        $this->partial('footer');
+        
     }
 
 
@@ -67,17 +76,36 @@ class AdminController extends Controller{
     private function showAdminPanel(){
         
         $this->partial('header');
-        $this->partial('navbar');
+        $this->partial('logNavbar');
         
-        $this->partial('adminPanel');
-
+        if($_SESSION['id_role']==1){
+         $this->partial('adminPanel');
+       // $this->view('users');
         $model = $this->model('admin');
         $table = $model->generateCRUD();
         echo $table;
-        
+        }
+        else{
+            $this->partial('adminPanel');
+            $model = $this->model('admin');
+            $table = $model->generateCRUD();
+            echo $table;
+        }
+
         $this->partial('footer');
     }
 
+    public function showUsers(){
+        $this->partial('header');
+        $this->partial('logNavbar');
+        $this->view('users');
+        $this->partial('footer');
+
+    }
+
+
+
+    
 
 
 
@@ -173,4 +201,26 @@ class AdminController extends Controller{
             }
         }
     }
+
+
+
+
+    public function users(){
+        
+        header('Content-type: application/json');
+        http_response_code(200);
+        $model = $this->model('admin');
+
+        $users = $model->getUsers();
+        
+        
+        echo $users ? json_encode($users) : '';
+    }
+
+
+
+
+
+
+
 }

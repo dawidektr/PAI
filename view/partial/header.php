@@ -9,6 +9,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
         <script src="/js/gallery.js"></script>
+        <script src="/js/app.js"></script>
         <script src="https://kit.fontawesome.com/0106706b5b.js"></script>
         
       <link href="/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">

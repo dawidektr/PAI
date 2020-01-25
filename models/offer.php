@@ -1,7 +1,14 @@
 <?php
 
+require_once "admin.php";
 class offer extends Model{
    
+
+
+
+    public function __construct(){
+        parent::__construct();
+	}
 
 
     public function getPhotos(){
@@ -137,6 +144,13 @@ public function gencarINFO($array){
     $prize = $array[0]['prize'];
     $shortDescript = $array[0]['shortDescript'];
     $descript = $array[0]['descript'];
+    $id_user= $array[0]['id_user'];
+
+    $admin= new admin();
+    $user_mail =$admin->find_by_id($id_user);
+
+
+
 
  $text = '';
  $text .= "<div class='container text-center'>";
@@ -151,6 +165,8 @@ public function gencarINFO($array){
  $text .= "<h3 class='text-center '>$name</h3>";
  $text .= "<h4 class='text-center'>$prize</h4>";
  $text .= "<p class='text-center w-75 m-auto '>$descript</p>";
+ $text .= "<h3 class='text-center '>Oferta użytkownika</h3>";
+ $text .= "<p class='text-center w-75 m-auto '>$user_mail</p>";
  $text .= "<h3 class='text-center mt-5'>Zdjęcia</h3>";
  $text .= "</div>";
 

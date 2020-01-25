@@ -5,7 +5,7 @@ class shop extends Model{
     
     
     public function getAllShopElement(){
-        $query = "SELECT * FROM cars";
+        $query = "SELECT * FROM cars_info";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         
@@ -34,8 +34,52 @@ class shop extends Model{
         return $result;
     }
 
+
+
+
+
+    public function getOneShopElement(){
+
+        $id_user=$_SESSION['id_user'];
+
+        $query = "SELECT * FROM cars_info WHERE id_user = $id_user";
+        $stmt = $this->db->prepare($query);
+        $stmt->execute();
+        
+        $result = array();
+		
+		
+		
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+			//do zmiany przy wrzucaniu na serwer
+			$query = "SELECT name FROM photos WHERE id_car = '".$row['id_car']."'";
+			$stmtPHOTO = $this->db->prepare($query);
+			$stmtPHOTO->execute();
+			
+			$resultPHOTO = $stmtPHOTO->fetch(PDO::FETCH_ASSOC);
+			
+			if($stmtPHOTO->rowCount() > 0){
+				$link = "photos/".$resultPHOTO['name'];
+            	array_push($row, $link);
+			}
+			
+			
+            array_push($result, $row);
+        }
+        
+		
+        return $result;
+    }
+
+
+
+
+
+
+
+
     public function getElementById($id){
-        $query = "SELECT * FROM cars WHERE id = $id";
+        $query = "SELECT * FROM cars_info WHERE id_car = $id";
         $stmt = $this->db->prepare($query);
         $stmt->execute();
         
@@ -91,7 +135,7 @@ class shop extends Model{
 				$stmt->execute();
 			}
 
-            $query = "UPDATE cars SET name = '$name', shortDescript = '$short_desc', descript = '$descript', year = '$year', prize='$prize' WHERE id = $id";
+            $query = "UPDATE cars SET name = '$name', shortDescript = '$short_desc', descript = '$descript', year = '$year', prize='$prize' WHERE id_car = $id";
             $stmt = $this->db->prepare($query);
             
             
@@ -101,7 +145,7 @@ class shop extends Model{
     
     public function genHTML($array){
         $text = '';
-        $text .= "<div class='container col-lg-9'>";
+        $text .= "<div class='container col-lg-11'>";
         $text .= "<div class='row'>";
         
         for($i=0; $i<count($array); $i++){
@@ -112,7 +156,7 @@ class shop extends Model{
             $shortDescript = $array[$i]['shortDescript'];
 			$mainPhoto = $array[$i][0];
 
-            $text .= "<div class='col-lg-4 col-md-6 mb-4'>";
+            $text .= "<div class='col-lg-4 col-md-5 col-sm-7  m-auto'>";
             $text .= "<div class='card h-100 bg-dark'>";
             $text .= "<a href='/offer?oferta=$id_car'><img class='card-img-top fotka' src='".$mainPhoto."' alt='' </a>";
             $text .= "<div class='card-body'>";

@@ -2,7 +2,7 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-lg-9 m-auto'>
+		<div class='col-lg-6 m-auto'>
 			<div id="addNewElement" style="text-align: center; margin-top: 56px; min-height: 100%;">
 				<form method="post" action="/admin/addFunction" enctype="multipart/form-data">
 					<div class="form-group">
