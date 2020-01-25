@@ -1,5 +1,5 @@
 <?php
-	$id = $data[0]['id'];
+	$id = $data[0]['id_car'];
 	$name = $data[0]['name'];
 
 
@@ -12,7 +12,7 @@
 
 <div class='container'>
 	<div class='row'>
-		<div class='col-lg-9'>
+		<div class='col-lg-6 m-auto'>
 			<div id="addNewElement" style="text-align: center; margin-top: 56px; min-height: 100%;">
 				<form method="post"  action="/admin/editFunc?id=<?php echo $id; ?>" enctype="multipart/form-data">
 					<div class="form-group">

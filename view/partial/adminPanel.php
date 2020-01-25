@@ -2,7 +2,7 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-9">
+        <div class="col-lg-9 m-auto text-center">
 			<br>
     		<h2><?php echo "Hello ", isset($_SESSION['email']) ? $_SESSION['email'] : "Admin", "!";  ?> </h2>
 
